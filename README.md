@@ -18,10 +18,10 @@ netpeek.on('data', function(data) { console.log(data); });
 Output data is json.
 ```json
 { 
-  '/Users/workroot/git/hij1nx/net-peek/test/tests/http-request-aggregate.js': {
-    httpParseCount: 2,
-    bytesRead: 3423,
-    bytesDispatched: 496
+  "/Users/workroot/git/hij1nx/net-peek/test/tests/http-request-aggregate.js": {
+    "httpParseCount": 2,
+    "bytesRead": 3423,
+    "bytesDispatched": 496
   }
 }
 ```

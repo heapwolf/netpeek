@@ -1,6 +1,6 @@
 {
   "name": "netpeek",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Find out how many bytes get sent over the network without using `c++`.",
   "main": "netpeek.js",
   "directories": {

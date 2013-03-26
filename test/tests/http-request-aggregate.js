@@ -1,7 +1,9 @@
 var netpeek = require('../../netpeek')({ aggregate: true });
 var assert = require('assert');
 
+var x = require('../fixtures/net');
 var testA = require('../fixtures/http-request');
+
 
 setTimeout(function() {
 

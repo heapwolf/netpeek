@@ -7,6 +7,8 @@ var options = {
   method: 'POST'
 };
 
+require('./net');
+
 var req = http.request(options, function(res) {
   res.setEncoding('utf8');
   res.on('data', function (chunk) {});

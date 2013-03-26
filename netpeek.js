@@ -5,34 +5,37 @@ var Emitter = function(opts) {
 
   opts = opts || {};
 
-  this.data = {};
+  this.data = {
+    httpParseCount: 0,
+    bytesRead: 0,
+    bytesDispatched: 0
+  };
 
   var that = this;
 
-  function httpPeek(binding, report) {
+  function httpPeek(binding) {
 
     var execute = binding.prototype.execute;
 
     binding.prototype.execute = function() {
-      report.httpParseCount++;
+      that.data.httpParseCount++;
       execute.apply(this, arguments);
     };
   }
 
-  function netPeek(binding, report) {
+  function netPeek(binding) {
 
     var readStart = binding.prototype.readStart;
 
     binding.prototype.readStart = function() {
-
       if (opts.aggregate) {
-        report.bytesRead += this.owner.bytesRead;
-        report.bytesDispatched += this.owner._bytesDispatched;
+        that.data.bytesRead += this.owner.bytesRead;
+        that.data.bytesDispatched += this.owner._bytesDispatched;
       }
       else {
-        report.bytesRead = this.owner.bytesRead;
-        report.bytesDispatched = this.owner._bytesDispatched;
-        that.emit('data', report);
+        that.data.bytesRead = this.owner.bytesRead;
+        that.data.bytesDispatched = this.owner._bytesDispatched;
+        that.emit('data', that.data);
       }
       readStart.apply(this, arguments);
     };
@@ -45,19 +48,10 @@ var Emitter = function(opts) {
     var binding = process._binding.apply(process, arguments);
 
     if (binding.TCP) {
-      that.data[module.parent.filename] = that.data[module.parent.filename] || {
-        bytesRead: 0,
-        bytesDispatched: 0
-      };
-      netPeek(binding.TCP, that.data[module.parent.filename]);
+      netPeek(binding.TCP, that.data);
     }
     else if (binding.HTTPParser) {
-      that.data[module.parent.filename] = that.data[module.parent.filename] || {
-        httpParseCount: 0,
-        bytesRead: 0,
-        bytesDispatched: 0
-      };
-      httpPeek(binding.HTTPParser, that.data[module.parent.filename]);
+      httpPeek(binding.HTTPParser, that.data);
     }
 
     return binding;

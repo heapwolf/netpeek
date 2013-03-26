@@ -1,7 +1,7 @@
 {
   "name": "netpeek",
   "version": "0.0.1",
-  "description": "Find out how many bytes each module communicates over the network without using",
+  "description": "Find out how many bytes get sent over the network without using `c++`.",
   "main": "netpeek.js",
   "directories": {
     "test": "test"

@@ -2,8 +2,7 @@
 netpeek(3)
 
 # SYNOPSIS
-Find out how many bytes each module communicates over the network without using
-c++
+Find out how many bytes get sent over the network without using `c++`.
 
 # USAGE
 Netpeek can also take an option `{ aggregate: true }` if you want to add all the
@@ -25,11 +24,9 @@ netpeek.on('data', function(data) {
 Output data is json.
 ```json
 { 
-  "/Users/workroot/git/hij1nx/net-peek/test/tests/http-request-aggregate.js": {
-    "httpParseCount": 2,
-    "bytesRead": 3423,
-    "bytesDispatched": 496
-  }
+  "httpParseCount": 2,
+  "bytesRead": 3423,
+  "bytesDispatched": 496
 }
 ```
 

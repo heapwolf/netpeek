@@ -14,5 +14,11 @@
     "url": "github"
   },
   "author": "hij1nx",
-  "license": "MIT"
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "61ddd8fbdcb4b161de368c3aee6b101da0471599",
+  "keywords": [
+    "tcp",
+    "http"
+  ]
 }

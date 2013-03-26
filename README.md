@@ -7,11 +7,18 @@ c++
 
 # USAGE
 Netpeek can also take an option `{ aggregate: true }` if you want to add all the
-bytes together instead of emitting them each time data is collected.
+bytes together instead of emitting them each time data is collected. Once Netpeek
+is required, it will start collecting data from anywhere in your application.
 
 ```js
-var netpeek = reguire('netpeek');
-netpeek.on('data', function(data) { console.log(data); });
+var netpeek = require('../../netpeek')();
+var assert = require('assert');
+
+require('./test/tests/http-request-aggregate');
+
+netpeek.on('data', function(data) {
+  console.log(data);
+});
 ```
 
 # EXAMPLES
@@ -26,7 +33,7 @@ Output data is json.
 }
 ```
 
-The following code produced the output above.
+The following code (test/tests/http-request-aggregate.js) produced the output above.
 ```js
 var http = require('http');
 
